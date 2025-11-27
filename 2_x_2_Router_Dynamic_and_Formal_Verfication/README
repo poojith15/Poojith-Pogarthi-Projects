@@ -1,0 +1,38 @@
+Dynamic and Formal Verification of Simple 2_x_2 Router Design
+1. We were given a design to verify and provided the spec documents and access to RTL(not a scenario where only spec is provided)
+2. We have tried to approach it as how a verification engineer would do it in industry, In order to develop the high level verification mindset.
+3. We were asked to verify with the specific methodology in an order but we wanted to decide for ourselves based on the design and specification and do the verification.
+4. The first and main thing to do is understanding the spec completely, it is absolutely important to understand correctly and not make any assumptions prior, ( we experienced it while we were doing the verification).( There was an ambiguity in the specification itself, if it wasn't noticed in detail and gave the same design to two different perceptive individuals then the verification outcome and features will be completely different. So, checking the ambiguity and understanding is important)
+
+5. To start with, we wanted to check the main feature of the given design. So that we can do the comprehensive verification on it. If it doesn't work at all, then it would be a waste of time, resources and cost.
+6. As the design given was simple. We decided to do the directed testing first in dynamic simulation. The reason behind it is simple and that is if RTL is a complex design then a constraint random driven testing is best for testing the main feature. 
+
+7. After testing, we found that the main feature itself is not working properly. We caught it at a very early stage. Here we debugged the design, as to why it is not working properly. In this scenario we would collaborate with a design engineer team and clearly communicate our results and fixing required. Here, as we assumed we are the design engineers and modified the RTL to work. (We got critical bugs here).
+==============================
+8. Then we noted down all the design features in the spec. Here will categorize the features as based on the relevance to the project.
+a. importance (specific, relevant)
+b. Risk factor ( measurable, achievable)
+c. Time constraint
+==============================
+9. Deciding the verification methodology.
+As the design is modular and well parameterized ( formal friendly), we decided to go for major combinations of inputs in direct testing layered test bench and not modular like UVM (got few more bugs) then do the formal verification with FPV for unique, complex and specific order of inputs and internal transitions. 
+Reference or golden model was not provided, there we decided not go for SEQ yet. We might need that for later stages with modifications or improvements that don't affect functionality (SEQ checks based on timing)
+==============================
+10. Wrote a verification plan (living document)
+
+a. What features will be tested 
+b. What test cases will cover the decided features. Helps in back tracing the bugs and completeness of verification.
+c. What are expected results for those cases. 
+d. What are the things we need to deliver 
+e.We estimate we will verify the design in 4 days with 3 members (Resources). 
+f. Set milestones to review 
+
+==============================
+11. Reviewing metrics
+Results:- dynamic simulation- as mentioned, got more bugs and listed down the probable improvement suggestions for RTL, as they were not mentioned in the specification but just based on our understanding of the spec and RTL. In this scenario we will collaborate with the design team and rectify the spec or clear our understanding because unclear spec is more dangerous. 
+
+FPV VC formal :- we got one more bug along with the above mentioned bugs.
+FPV Jasper Gold:- decided to run it in a different tool just to make sure of features and tool familiarity. Surprisingly, we got a combinational loop error in the Jasper Gold which we didn't get in VC formal(both strictly checks combinational in always_comb but Jasper does better in sequential as well?). It looked like Cadence Jasper Gold does better checks than Synopsys VC Formal in combination loops. After debugging, we figured out that signals involved and constraints which were used to cause the loop error. We modified the RTL but we should collaborate in a real scenario.
+AEP VC Formal:- We decided to run the same code (un rectified combinational loop) in the AEP app of VC Formal. We got an arithmetic overflow, which is not the same as the Combinational loop.
+FXP and Superlint:- We decided to check and run in VC Formal and Jasper Gold for any x- propagation and before sign-off.
+==============================
