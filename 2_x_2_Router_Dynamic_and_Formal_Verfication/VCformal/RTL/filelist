@@ -1,0 +1,7 @@
+../RTL/design_includes.h
+../RTL/router_fifo.sv
+../RTL/output_port_arbiter.sv
+../RTL/simple_router.sv
+../RTL/router_assumptions.sva
+../RTL/router_assertions.sva
+../RTL/bind_file.sva

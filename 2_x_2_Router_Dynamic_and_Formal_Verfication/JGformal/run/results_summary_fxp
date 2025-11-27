@@ -1,0 +1,794 @@
+
+==============================================================
+    Jasper Verification Results
+==============================================================
+    2024.06p002 64 bits for Linux64 3.10.0-1160.21.1.el7.x86_64
+    Host Name: mo.ece.pdx.edu
+    User Name: poojith
+    Printed on: Wednesday, Nov26, 2025 08:14:30 PM PST
+    Working Directory: /u/poojith/JD_M/HW3/run
+
+
+==============================================================
+DETAILED RESULTS
+==============================================================
+
+---[ <embedded> ]--------------------------------------------------------------
+[1]
+    Name       : simple_router.u_assumptions.assume_p0_head_tail_exclusive
+    Expression : u_assumptions.assume_p0_head_tail_exclusive
+    Type       : assume
+    Location   : ../RTL/router_assumptions.sva, 16
+
+    Status     : temporary
+[2]
+    Name       : simple_router.u_assumptions.assume_p1_head_tail_exclusive
+    Expression : u_assumptions.assume_p1_head_tail_exclusive
+    Type       : assume
+    Location   : ../RTL/router_assumptions.sva, 23
+
+    Status     : temporary
+[3]
+    Name       : simple_router.u_assumptions.assume_both_inputs_valid_0
+    Expression : u_assumptions.assume_both_inputs_valid_0
+    Type       : assume
+    Location   : ../RTL/router_assumptions.sva, 30
+
+    Status     : temporary
+[4]
+    Name       : simple_router.u_assumptions.assume_both_inputs_valid_0:precondition1
+    Expression : u_assumptions.assume_both_inputs_valid_0_precondition1
+    Type       : cover
+    Location   : ../RTL/router_assumptions.sva, 30
+
+    Result     : covered
+    Bound      : 1
+    Time       : 0.000 s
+    Engine     : N
+
+
+[5]
+    Name       : simple_router.u_assumptions.assume_both_inputs_valid_1
+    Expression : u_assumptions.assume_both_inputs_valid_1
+    Type       : assume
+    Location   : ../RTL/router_assumptions.sva, 31
+
+    Status     : temporary
+[6]
+    Name       : simple_router.u_assumptions.assume_both_inputs_valid_1:precondition1
+    Expression : u_assumptions.assume_both_inputs_valid_1_precondition1
+    Type       : cover
+    Location   : ../RTL/router_assumptions.sva, 31
+
+    Result     : covered
+    Bound      : 1
+    Time       : 0.000 s
+    Engine     : N
+
+
+[7]
+    Name       : simple_router.u_assumptions.assume_any_input_valid_always
+    Expression : u_assumptions.assume_any_input_valid_always
+    Type       : assume
+    Location   : ../RTL/router_assumptions.sva, 38
+
+    Status     : temporary
+[8]
+    Name       : simple_router.u_assumptions.assume_mid_flits_valid_0
+    Expression : u_assumptions.assume_mid_flits_valid_0
+    Type       : assume
+    Location   : ../RTL/router_assumptions.sva, 46
+
+    Status     : temporary
+[9]
+    Name       : simple_router.u_assumptions.assume_mid_flits_valid_0:precondition1
+    Expression : u_assumptions.assume_mid_flits_valid_0_precondition1
+    Type       : cover
+    Location   : ../RTL/router_assumptions.sva, 46
+
+    Result     : covered
+    Bound      : 1
+    Time       : 0.000 s
+    Engine     : PRE
+
+
+[10]
+    Name       : simple_router.u_assumptions.assume_mid_flits_valid_1
+    Expression : u_assumptions.assume_mid_flits_valid_1
+    Type       : assume
+    Location   : ../RTL/router_assumptions.sva, 47
+
+    Status     : temporary
+[11]
+    Name       : simple_router.u_assumptions.assume_mid_flits_valid_1:precondition1
+    Expression : u_assumptions.assume_mid_flits_valid_1_precondition1
+    Type       : cover
+    Location   : ../RTL/router_assumptions.sva, 47
+
+    Result     : covered
+    Bound      : 1
+    Time       : 0.000 s
+    Engine     : PRE
+
+
+[12]
+    Name       : simple_router.u_assumptions.assume_same_port_stream_0
+    Expression : u_assumptions.assume_same_port_stream_0
+    Type       : assume
+    Location   : ../RTL/router_assumptions.sva, 57
+
+    Status     : temporary
+[13]
+    Name       : simple_router.u_assumptions.assume_same_port_stream_0:precondition1
+    Expression : u_assumptions.assume_same_port_stream_0_precondition1
+    Type       : cover
+    Location   : ../RTL/router_assumptions.sva, 57
+
+    Result     : covered
+    Bound      : 1
+    Time       : 0.001 s
+    Engine     : N
+
+
+[14]
+    Name       : simple_router.u_assumptions.assume_same_port_stream_1
+    Expression : u_assumptions.assume_same_port_stream_1
+    Type       : assume
+    Location   : ../RTL/router_assumptions.sva, 58
+
+    Status     : temporary
+[15]
+    Name       : simple_router.u_assumptions.assume_same_port_stream_1:precondition1
+    Expression : u_assumptions.assume_same_port_stream_1_precondition1
+    Type       : cover
+    Location   : ../RTL/router_assumptions.sva, 58
+
+    Result     : covered
+    Bound      : 1
+    Time       : 0.000 s
+    Engine     : PRE
+
+
+[16]
+    Name       : simple_router.u_assumptions.assume_cross_port_stream_0
+    Expression : u_assumptions.assume_cross_port_stream_0
+    Type       : assume
+    Location   : ../RTL/router_assumptions.sva, 68
+
+    Status     : temporary
+[17]
+    Name       : simple_router.u_assumptions.assume_cross_port_stream_0:precondition1
+    Expression : u_assumptions.assume_cross_port_stream_0_precondition1
+    Type       : cover
+    Location   : ../RTL/router_assumptions.sva, 68
+
+    Result     : covered
+    Bound      : 1
+    Time       : 0.000 s
+    Engine     : PRE
+
+
+[18]
+    Name       : simple_router.u_assumptions.assume_cross_port_stream_1
+    Expression : u_assumptions.assume_cross_port_stream_1
+    Type       : assume
+    Location   : ../RTL/router_assumptions.sva, 69
+
+    Status     : temporary
+[19]
+    Name       : simple_router.u_assumptions.assume_cross_port_stream_1:precondition1
+    Expression : u_assumptions.assume_cross_port_stream_1_precondition1
+    Type       : cover
+    Location   : ../RTL/router_assumptions.sva, 69
+
+    Result     : covered
+    Bound      : 1
+    Time       : 0.001 s
+    Engine     : N
+
+
+[20]
+    Name       : simple_router.u_assumptions.assume_p0_dest_in_range
+    Expression : u_assumptions.assume_p0_dest_in_range
+    Type       : assume
+    Location   : ../RTL/router_assumptions.sva, 104
+
+    Status     : temporary
+[21]
+    Name       : simple_router.u_assumptions.assume_p0_dest_in_range:precondition1
+    Expression : u_assumptions.assume_p0_dest_in_range_precondition1
+    Type       : cover
+    Location   : ../RTL/router_assumptions.sva, 104
+
+    Result     : covered
+    Bound      : 1
+    Time       : 0.000 s
+    Engine     : N
+
+
+[22]
+    Name       : simple_router.u_assumptions.assume_p1_dest_in_range
+    Expression : u_assumptions.assume_p1_dest_in_range
+    Type       : assume
+    Location   : ../RTL/router_assumptions.sva, 110
+
+    Status     : temporary
+[23]
+    Name       : simple_router.u_assumptions.assume_p1_dest_in_range:precondition1
+    Expression : u_assumptions.assume_p1_dest_in_range_precondition1
+    Type       : cover
+    Location   : ../RTL/router_assumptions.sva, 110
+
+    Result     : covered
+    Bound      : 1
+    Time       : 0.000 s
+    Engine     : N
+
+
+[24]
+    Name       : simple_router.u_assumptions.assume_p0_packet_has_tail_relaxed
+    Expression : u_assumptions.assume_p0_packet_has_tail_relaxed
+    Type       : assume
+    Location   : ../RTL/router_assumptions.sva, 120
+
+    Status     : temporary
+[25]
+    Name       : simple_router.u_assumptions.assume_p0_packet_has_tail_relaxed:precondition1
+    Expression : u_assumptions.assume_p0_packet_has_tail_relaxed_precondition1
+    Type       : cover
+    Location   : ../RTL/router_assumptions.sva, 120
+
+    Result     : covered
+    Bound      : 1
+    Time       : 0.000 s
+    Engine     : PRE
+
+
+[26]
+    Name       : simple_router.u_assumptions.assume_p1_packet_has_tail_relaxed
+    Expression : u_assumptions.assume_p1_packet_has_tail_relaxed
+    Type       : assume
+    Location   : ../RTL/router_assumptions.sva, 127
+
+    Status     : temporary
+[27]
+    Name       : simple_router.u_assumptions.assume_p1_packet_has_tail_relaxed:precondition1
+    Expression : u_assumptions.assume_p1_packet_has_tail_relaxed_precondition1
+    Type       : cover
+    Location   : ../RTL/router_assumptions.sva, 127
+
+    Result     : covered
+    Bound      : 1
+    Time       : 0.000 s
+    Engine     : PRE
+
+
+[28]
+    Name       : simple_router.u_assertions.P_Write_to_fifo_0_assert
+    Expression : u_assertions.P_Write_to_fifo_0_assert
+    Type       : assert
+    Location   : ../RTL/router_assertions.sva, 26
+
+    Result     : proven
+    Bound      : Infinite
+    Time       : 0.000 s
+    Engine     : PRE
+
+
+[29]
+    Name       : simple_router.u_assertions.P_Write_to_fifo_0_assert:precondition1
+    Expression : u_assertions.P_Write_to_fifo_0_assert_precondition1
+    Type       : cover
+    Location   : ../RTL/router_assertions.sva, 26
+
+    Result     : covered
+    Bound      : 1
+    Time       : 0.000 s
+    Engine     : PRE
+
+
+[30]
+    Name       : simple_router.u_assertions.P_Write_to_fifo_1_assert
+    Expression : u_assertions.P_Write_to_fifo_1_assert
+    Type       : assert
+    Location   : ../RTL/router_assertions.sva, 33
+
+    Result     : proven
+    Bound      : Infinite
+    Time       : 0.000 s
+    Engine     : PRE
+
+
+[31]
+    Name       : simple_router.u_assertions.P_Write_to_fifo_1_assert:precondition1
+    Expression : u_assertions.P_Write_to_fifo_1_assert_precondition1
+    Type       : cover
+    Location   : ../RTL/router_assertions.sva, 33
+
+    Result     : covered
+    Bound      : 1
+    Time       : 0.000 s
+    Engine     : N
+
+
+[32]
+    Name       : simple_router.u_assertions.P_Read_from_fifo_0_assert
+    Expression : u_assertions.P_Read_from_fifo_0_assert
+    Type       : assert
+    Location   : ../RTL/router_assertions.sva, 40
+
+    Result     : proven
+    Bound      : Infinite
+    Time       : 0.000 s
+    Engine     : PRE
+
+
+[33]
+    Name       : simple_router.u_assertions.P_Read_from_fifo_0_assert:precondition1
+    Expression : u_assertions.P_Read_from_fifo_0_assert_precondition1
+    Type       : cover
+    Location   : ../RTL/router_assertions.sva, 40
+
+    Result     : covered
+    Bound      : 2
+    Time       : 0.003 s
+    Engine     : N
+
+
+[34]
+    Name       : simple_router.u_assertions.P_Read_from_fifo_1_assert
+    Expression : u_assertions.P_Read_from_fifo_1_assert
+    Type       : assert
+    Location   : ../RTL/router_assertions.sva, 47
+
+    Result     : proven
+    Bound      : Infinite
+    Time       : 0.000 s
+    Engine     : PRE
+
+
+[35]
+    Name       : simple_router.u_assertions.P_Read_from_fifo_1_assert:precondition1
+    Expression : u_assertions.P_Read_from_fifo_1_assert_precondition1
+    Type       : cover
+    Location   : ../RTL/router_assertions.sva, 47
+
+    Result     : covered
+    Bound      : 2
+    Time       : 0.002 s
+    Engine     : N
+
+
+[36]
+    Name       : simple_router.u_assertions.P_Route_In0_Out0_assert
+    Expression : u_assertions.P_Route_In0_Out0_assert
+    Type       : assert
+    Location   : ../RTL/router_assertions.sva, 89
+
+    Result     : proven
+    Bound      : Infinite
+    Time       : 0.000 s
+    Engine     : PRE
+
+
+[37]
+    Name       : simple_router.u_assertions.P_Route_In0_Out0_assert:precondition1
+    Expression : u_assertions.P_Route_In0_Out0_assert_precondition1
+    Type       : cover
+    Location   : ../RTL/router_assertions.sva, 89
+
+    Result     : covered
+    Bound      : 2
+    Time       : 0.003 s
+    Engine     : N
+
+
+[38]
+    Name       : simple_router.u_assertions.P_Route_In1_Out0_assert
+    Expression : u_assertions.P_Route_In1_Out0_assert
+    Type       : assert
+    Location   : ../RTL/router_assertions.sva, 97
+
+    Result     : proven
+    Bound      : Infinite
+    Time       : 0.000 s
+    Engine     : PRE
+
+
+[39]
+    Name       : simple_router.u_assertions.P_Route_In1_Out0_assert:precondition1
+    Expression : u_assertions.P_Route_In1_Out0_assert_precondition1
+    Type       : cover
+    Location   : ../RTL/router_assertions.sva, 97
+
+    Result     : covered
+    Bound      : 2
+    Time       : 0.003 s
+    Engine     : N
+
+
+[40]
+    Name       : simple_router.u_assertions.P_Route_In0_Out1_assert
+    Expression : u_assertions.P_Route_In0_Out1_assert
+    Type       : assert
+    Location   : ../RTL/router_assertions.sva, 105
+
+    Result     : proven
+    Bound      : Infinite
+    Time       : 0.000 s
+    Engine     : PRE
+
+
+[41]
+    Name       : simple_router.u_assertions.P_Route_In0_Out1_assert:precondition1
+    Expression : u_assertions.P_Route_In0_Out1_assert_precondition1
+    Type       : cover
+    Location   : ../RTL/router_assertions.sva, 105
+
+    Result     : covered
+    Bound      : 2
+    Time       : 0.001 s
+    Engine     : N
+
+
+[42]
+    Name       : simple_router.u_assertions.P_Route_In1_Out1_assert
+    Expression : u_assertions.P_Route_In1_Out1_assert
+    Type       : assert
+    Location   : ../RTL/router_assertions.sva, 113
+
+    Result     : proven
+    Bound      : Infinite
+    Time       : 0.000 s
+    Engine     : PRE
+
+
+[43]
+    Name       : simple_router.u_assertions.P_Route_In1_Out1_assert:precondition1
+    Expression : u_assertions.P_Route_In1_Out1_assert_precondition1
+    Type       : cover
+    Location   : ../RTL/router_assertions.sva, 113
+
+    Result     : covered
+    Bound      : 2
+    Time       : 0.002 s
+    Engine     : N
+
+
+[44]
+    Name       : simple_router.u_assertions.assert_valid_head0
+    Expression : u_assertions.assert_valid_head0
+    Type       : assert
+    Location   : ../RTL/router_assertions.sva, 120
+
+    Result     : proven
+    Bound      : Infinite
+    Time       : 0.000 s
+    Engine     : PRE
+
+
+[45]
+    Name       : simple_router.u_assertions.assert_valid_head0:precondition1
+    Expression : u_assertions.assert_valid_head0_precondition1
+    Type       : cover
+    Location   : ../RTL/router_assertions.sva, 120
+
+    Result     : covered
+    Bound      : 1
+    Time       : 0.000 s
+    Engine     : PRE
+
+
+[46]
+    Name       : simple_router.u_assertions.assert_valid_head1
+    Expression : u_assertions.assert_valid_head1
+    Type       : assert
+    Location   : ../RTL/router_assertions.sva, 121
+
+    Result     : proven
+    Bound      : Infinite
+    Time       : 0.000 s
+    Engine     : PRE
+
+
+[47]
+    Name       : simple_router.u_assertions.assert_valid_head1:precondition1
+    Expression : u_assertions.assert_valid_head1_precondition1
+    Type       : cover
+    Location   : ../RTL/router_assertions.sva, 121
+
+    Result     : covered
+    Bound      : 1
+    Time       : 0.000 s
+    Engine     : PRE
+
+
+[48]
+    Name       : simple_router.u_assertions.P_MaskReset_O0_assert
+    Expression : u_assertions.P_MaskReset_O0_assert
+    Type       : assert
+    Location   : ../RTL/router_assertions.sva, 134
+
+    Result     : proven
+    Bound      : Infinite
+    Time       : 0.001 s
+    Engine     : N
+
+
+[49]
+    Name       : simple_router.u_assertions.P_MaskReset_O0_assert:precondition1
+    Expression : u_assertions.P_MaskReset_O0_assert_precondition1
+    Type       : cover
+    Location   : ../RTL/router_assertions.sva, 134
+
+    Result     : covered
+    Bound      : 2
+    Time       : 0.001 s
+    Engine     : N
+
+
+[50]
+    Name       : simple_router.u_assertions.P_MaskReset_O1_assert
+    Expression : u_assertions.P_MaskReset_O1_assert
+    Type       : assert
+    Location   : ../RTL/router_assertions.sva, 142
+
+    Result     : proven
+    Bound      : Infinite
+    Time       : 0.001 s
+    Engine     : N
+
+
+[51]
+    Name       : simple_router.u_assertions.P_MaskReset_O1_assert:precondition1
+    Expression : u_assertions.P_MaskReset_O1_assert_precondition1
+    Type       : cover
+    Location   : ../RTL/router_assertions.sva, 142
+
+    Result     : covered
+    Bound      : 2
+    Time       : 0.002 s
+    Engine     : N
+
+
+[52]
+    Name       : simple_router.u_assertions.P_OutMatch0_From0_assert
+    Expression : u_assertions.P_OutMatch0_From0_assert
+    Type       : assert
+    Location   : ../RTL/router_assertions.sva, 154
+
+    Result     : proven
+    Bound      : Infinite
+    Time       : 0.018 s
+    Engine     : Hp
+
+
+[53]
+    Name       : simple_router.u_assertions.P_OutMatch0_From0_assert:precondition1
+    Expression : u_assertions.P_OutMatch0_From0_assert_precondition1
+    Type       : cover
+    Location   : ../RTL/router_assertions.sva, 154
+
+    Result     : covered
+    Bound      : 2
+    Time       : 0.003 s
+    Engine     : N
+
+
+[54]
+    Name       : simple_router.u_assertions.P_OutMatch0_From1_assert
+    Expression : u_assertions.P_OutMatch0_From1_assert
+    Type       : assert
+    Location   : ../RTL/router_assertions.sva, 160
+
+    Result     : proven
+    Bound      : Infinite
+    Time       : 0.019 s
+    Engine     : Hp
+
+
+[55]
+    Name       : simple_router.u_assertions.P_OutMatch0_From1_assert:precondition1
+    Expression : u_assertions.P_OutMatch0_From1_assert_precondition1
+    Type       : cover
+    Location   : ../RTL/router_assertions.sva, 160
+
+    Result     : covered
+    Bound      : 2
+    Time       : 0.001 s
+    Engine     : N
+
+
+[56]
+    Name       : simple_router.u_assertions.P_OutMatch1_From0_assert
+    Expression : u_assertions.P_OutMatch1_From0_assert
+    Type       : assert
+    Location   : ../RTL/router_assertions.sva, 166
+
+    Result     : proven
+    Bound      : Infinite
+    Time       : 0.019 s
+    Engine     : Hp
+
+
+[57]
+    Name       : simple_router.u_assertions.P_OutMatch1_From0_assert:precondition1
+    Expression : u_assertions.P_OutMatch1_From0_assert_precondition1
+    Type       : cover
+    Location   : ../RTL/router_assertions.sva, 166
+
+    Result     : covered
+    Bound      : 2
+    Time       : 0.001 s
+    Engine     : N
+
+
+[58]
+    Name       : simple_router.u_assertions.P_OutMatch1_From1_assert
+    Expression : u_assertions.P_OutMatch1_From1_assert
+    Type       : assert
+    Location   : ../RTL/router_assertions.sva, 172
+
+    Result     : proven
+    Bound      : Infinite
+    Time       : 0.020 s
+    Engine     : Hp
+
+
+[59]
+    Name       : simple_router.u_assertions.P_OutMatch1_From1_assert:precondition1
+    Expression : u_assertions.P_OutMatch1_From1_assert_precondition1
+    Type       : cover
+    Location   : ../RTL/router_assertions.sva, 172
+
+    Result     : covered
+    Bound      : 2
+    Time       : 0.002 s
+    Engine     : N
+
+
+[60]
+    Name       : simple_router.u_assertions.P_OneHot_Grant0_assert
+    Expression : u_assertions.P_OneHot_Grant0_assert
+    Type       : assert
+    Location   : ../RTL/router_assertions.sva, 184
+
+    Result     : proven
+    Bound      : Infinite
+    Time       : 0.000 s
+    Engine     : PRE
+
+
+[61]
+    Name       : simple_router.u_assertions.P_OneHot_Grant1_assert
+    Expression : u_assertions.P_OneHot_Grant1_assert
+    Type       : assert
+    Location   : ../RTL/router_assertions.sva, 190
+
+    Result     : proven
+    Bound      : Infinite
+    Time       : 0.000 s
+    Engine     : PRE
+
+
+[62]
+    Name       : simple_router.u_assertions.in1_ou0_assert
+    Expression : u_assertions.in1_ou0_assert
+    Type       : assert
+    Location   : ../RTL/router_assertions.sva, 223
+
+    Result     : proven
+    Bound      : Infinite
+    Time       : 0.064 s
+    Engine     : Hp
+
+
+[63]
+    Name       : simple_router.u_assertions.in1_ou0_assert:precondition1
+    Expression : u_assertions.in1_ou0_assert_precondition1
+    Type       : cover
+    Location   : ../RTL/router_assertions.sva, 223
+
+    Result     : covered
+    Bound      : 2
+    Time       : 0.001 s
+    Engine     : N
+
+
+[64]
+    Name       : simple_router.u_assertions.in0_ou0_assert
+    Expression : u_assertions.in0_ou0_assert
+    Type       : assert
+    Location   : ../RTL/router_assertions.sva, 224
+
+    Result     : proven
+    Bound      : Infinite
+    Time       : 0.064 s
+    Engine     : Hp
+
+
+[65]
+    Name       : simple_router.u_assertions.in0_ou0_assert:precondition1
+    Expression : u_assertions.in0_ou0_assert_precondition1
+    Type       : cover
+    Location   : ../RTL/router_assertions.sva, 224
+
+    Result     : covered
+    Bound      : 2
+    Time       : 0.003 s
+    Engine     : N
+
+
+[66]
+    Name       : simple_router.u_assertions.in1_ou1_assert
+    Expression : u_assertions.in1_ou1_assert
+    Type       : assert
+    Location   : ../RTL/router_assertions.sva, 225
+
+    Result     : proven
+    Bound      : Infinite
+    Time       : 0.065 s
+    Engine     : Hp
+
+
+[67]
+    Name       : simple_router.u_assertions.in1_ou1_assert:precondition1
+    Expression : u_assertions.in1_ou1_assert_precondition1
+    Type       : cover
+    Location   : ../RTL/router_assertions.sva, 225
+
+    Result     : covered
+    Bound      : 2
+    Time       : 0.002 s
+    Engine     : N
+
+
+[68]
+    Name       : simple_router.u_assertions.read0_ou1_or_ou0_assert
+    Expression : u_assertions.read0_ou1_or_ou0_assert
+    Type       : assert
+    Location   : ../RTL/router_assertions.sva, 226
+
+    Result     : proven
+    Bound      : Infinite
+    Time       : 0.000 s
+    Engine     : PRE
+
+
+[69]
+    Name       : simple_router.u_assertions.read0_ou1_or_ou0_assert:precondition1
+    Expression : u_assertions.read0_ou1_or_ou0_assert_precondition1
+    Type       : cover
+    Location   : ../RTL/router_assertions.sva, 226
+
+    Result     : covered
+    Bound      : 2
+    Time       : 0.003 s
+    Engine     : N
+
+
+[70]
+    Name       : simple_router.u_assertions.cover_pkt_p0
+    Expression : u_assertions.cover_pkt_p0
+    Type       : cover
+    Location   : ../RTL/router_assertions.sva, 248
+
+    Result     : covered
+    Bound      : 3
+    Time       : 0.002 s
+    Engine     : N
+
+
+[71]
+    Name       : simple_router.u_assertions.cover_pkt_p1
+    Expression : u_assertions.cover_pkt_p1
+    Type       : cover
+    Location   : ../RTL/router_assertions.sva, 249
+
+    Result     : covered
+    Bound      : 3
+    Time       : 0.076 s
+    Engine     : Hp
+
+
+-------------------------------------------------------------------------------

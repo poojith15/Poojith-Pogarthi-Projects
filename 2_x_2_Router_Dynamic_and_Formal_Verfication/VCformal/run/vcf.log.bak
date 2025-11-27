@@ -1,0 +1,154 @@
+
+                                   VC Static 
+
+              Version V-2023.12-SP2-3 for linux64 - Oct 12, 2024 
+
+                    Copyright (c) 2010 - 2024 Synopsys, Inc.
+   This software and the associated documentation are proprietary to Synopsys,
+ Inc. This software may only be used in accordance with the terms and conditions
+ of a written license agreement with Synopsys, Inc. All other use, reproduction,
+   or distribution of this software is strictly prohibited.  Licensed Products
+     communicate with Synopsys servers for the purpose of providing software
+    updates, detecting software piracy and verifying that customers are using
+    Licensed Products in conformity with the applicable License Key for such
+  Licensed Products. Synopsys will use information gathered in connection with
+    this process to deliver software updates and pursue software pirates and
+                                   infringers.
+
+ Inclusivity & Diversity - Visit SolvNetPlus to read the "Synopsys Statement on
+            Inclusivity and Diversity" (Refer to article 000036315 at
+                        https://solvnetplus.synopsys.com)
+restore_session -level default
+
+MasterSourceFile run_vc_fxp.tcl
+set_fml_appmode FXP
+read_file -top simple_router -format sverilog -sva -vcs {-f ../RTL/filelist}
+Warning-[SFCORW] Source file cannot be opened
+  Source file "design_includes.h" cannot be opened for reading due to 'No such
+  file or directory'.
+  It will be skipped.
+  "../RTL/router_fifo.sv", 1
+  Source info: `include "design_includes.h"
+
+Warning-[SFCORW] Source file cannot be opened
+  Source file "design_includes.h" cannot be opened for reading due to 'No such
+  file or directory'.
+  It will be skipped.
+  "../RTL/simple_router.sv", 1
+  Source info: `include "design_includes.h"
+
+Info: Invoking New SVA Compiler Instrument...
+Info: SVAC-NC Start
+Info: SVAC-NC Finished
+Info: Invoking Simon...
+Info: Simon VCS Start
+=======================================================
+VCS CPU Time(s)     :0.60
+SIMON CPU Time(s)   :0.76
+SIMON Total Time(s) :0.29
+Peak Memory(MB)     :416
+=======================================================
+Info: Simon VCS Finished
+Info: Simon call complete 
+Info: Exiting after Simon Analysis 
+Verdi KDB elaboration done and the database successfully generated: 0 error(s), 0 warning(s)
+[Info] DB_COPT045: Vcs analyzer task has finished.
+[Info] PROP_I_COLLECT: Collecting Source Properties from the view:simple_router.
+# Gate Counts 
+Number of Flat Instances = 2999
+Number of Operator = 2999
+Number of Libcells = 0
+Number of Black-Box Instances = 0
+Number of FlipFlop BitWise = 342
+Number of Latch Bitwise = 0
+Number of Nand BitWise = 4
+Number of Comb logic = 1398
+
+set_fml_var fxp_compute_rootcause_auto true
+create_clock clk -period 100
+create_reset rst_b -sense low
+sim_run -stable
+[Info] SIM_I_CREATE: Create Simulation Model.
+sim_save_reset
+fxp_generate
+[Info] FXP_GENERATE_STATUS: 2 nox properties with usage assert were generated for out signals
+[Info] FXP_GENERATE_STATUS: 1 injectx_oba properties with usage assume were generated for oba scopes
+[Info] FXP_GENERATE_STATUS: 1 injectx_undef properties with usage assume were generated for undef scopes
+[Info] FXP_GENERATE_STATUS: 1 injectx_xassign properties with usage assume were generated for xassign scopes
+set_fml_var fxp_compute_rootcause_auto true
+check_fv
+[Info] FORMAL_I_CREATE: Create Formal Model:simple_router.
+[Info] FORMAL_I_RUN: Starting formal verification for check_fv
+	  Id: 0  Goals: 14  Constraints: 15  Block Mode: false
+[Info] LIC_UNUSED_WORKERS: 8 unused worker(s) based 1 licenses needed to support 4 workers requested.
+	Use 'set_grid_usage' to maximize worker usage and improve performance, if there are sufficient compute resources to support more workers.
+	Each runtime license supports 12 workers.
+[Info] LIC_RT_CHECKOUT: VC Formal run time license checkout. Base:1  FXP:1.
+report_fv -list
+
+  Summary Results
+   Property Summary: FXP
+   -----------------
+   > Vacuity
+     - # found        : 12
+     - # not_run      : 12
+
+   > Constraint
+     - # found        : 19
+
+   Xprop Property Summary: FXP
+   -----------------------
+   > Assertion
+     - # found        : 2
+     - # not_run      : 2
+
+
+  List Results
+   Property List:
+   --------------
+   > Constraint
+     # Constraint: 19
+     [  40] constrained                             -  _fxp_1_oba_simple_router_0 - INJECTX_OBA( simple_router )
+     [  41] constrained                             -  _fxp_1_undef_simple_router_1 - INJECTX_UNDEF( simple_router )
+     [  42] constrained                             -  _fxp_1_xassign_simple_router_2 - INJECTX_XASSIGN( simple_router )
+     [  24] constrained                             -  simple_router.u_assumptions.assume_any_input_valid_always
+     [  25] constrained              (not_run)      -  simple_router.u_assumptions.assume_both_inputs_valid_0
+     [  26] constrained              (not_run)      -  simple_router.u_assumptions.assume_both_inputs_valid_1
+     [  27] constrained              (not_run)      -  simple_router.u_assumptions.assume_cross_port_stream_0
+     [  28] constrained              (not_run)      -  simple_router.u_assumptions.assume_cross_port_stream_1
+     [  29] constrained              (not_run)      -  simple_router.u_assumptions.assume_mid_flits_valid_0
+     [  30] constrained              (not_run)      -  simple_router.u_assumptions.assume_mid_flits_valid_1
+     [  31] constrained              (not_run)      -  simple_router.u_assumptions.assume_p0_dest_in_range
+     [  32] constrained                             -  simple_router.u_assumptions.assume_p0_head_tail_exclusive
+     [  33] constrained              (not_run)      -  simple_router.u_assumptions.assume_p0_packet_has_tail_relaxed
+     [  34] constrained              (not_run)      -  simple_router.u_assumptions.assume_p1_dest_in_range
+     [  35] constrained                             -  simple_router.u_assumptions.assume_p1_head_tail_exclusive
+     [  36] constrained              (not_run)      -  simple_router.u_assumptions.assume_p1_packet_has_tail_relaxed
+     [  37] constrained              (not_run)      -  simple_router.u_assumptions.assume_same_port_stream_0
+     [  38] constrained              (not_run)      -  simple_router.u_assumptions.assume_same_port_stream_1
+     [  39] constrained                             -  constant_39 - rst_b==1
+
+   Xprop Property List:
+   --------------------
+   > Assertion
+     # Assertion: 2
+     [  43] not_run                                 -  _fxp_1_out_fifo_full_0 - NOX( fifo_full )
+     [  44] not_run                                 -  _fxp_1_out_pkt_out_1 - NOX( pkt_out )
+
+
+
+[Info] TW_INFO_MSG: Starting rewrite (rw1_1) command at 2025-11-26::22:41:49.
+action aaVerdiRestoreClipboard -trigger
+[Info] BITLEVEL_MODEL_STATS: Generated model with 289 gates, 74 inputs, 83 registers, 0 initial constraints, 15 constraints.
+[Info] TW_INFO_MSG: Proof rw1_1 gates : 289 inputs : 74 reg : 83 initConst : 0 invarConst : 15 .
+[Info] TW_INFO_MSG: Finished rewrite (rw1_1) command in 2 seconds.
+[Info] TW_INFO_MSG: Starting v3 refine (rw1_1) command at 2025-11-26::22:41:51.
+[Info] TW_INFO_MSG: Finished refine (rw1_1) command in 1 seconds.
+=======================================================
+Total Time(S)  :47.62
+CPU Time(S)    :6.58
+Peak Memory(MB):1721
+========================Formal=========================
+Engine Wall Time(S)    :10.04
+Engine Peak Memory(MB) :166
+=======================================================

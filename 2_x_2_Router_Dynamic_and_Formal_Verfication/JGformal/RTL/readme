@@ -1,0 +1,13 @@
+# Create your assertion, assmption and cover files
+
+# filelist below shows example path to assertions and assumption
+
+# create a bind file to bind the assertion/assmptions/cpver to rtl
+
+#filelist includes: but you need to create and add contents to it
+../RTL/router_assumptions.sva
+../RTL/router_assertions.sva
+../RTL/bind_file.sva
+
+
+

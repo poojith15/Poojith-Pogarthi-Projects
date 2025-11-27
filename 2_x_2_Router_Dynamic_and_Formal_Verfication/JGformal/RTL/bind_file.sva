@@ -1,0 +1,23 @@
+// Bind assumptions to simple_router top level
+bind simple_router router_assumptions u_assumptions (
+    .clk(clk),
+    .rst_b(rst_b),
+    .pkt_in(pkt_in),
+    .fifo_full(fifo_full)
+);
+
+// Bind assertions to simple_router top level
+bind simple_router router_assertions u_assertions (
+    .clk(clk),
+    .rst_b(rst_b),
+    .pkt_in(pkt_in),
+    .pkt_out(pkt_out),
+    .fifo_full(fifo_full),
+    .fifo_empty(fifo_empty),
+    .write(write),
+    .read(read),
+    .fifo_out_pkt(fifo_out_pkt),
+    .out_req(out_req),
+    .out_grant(out_grant),
+    .mask(mask)
+);

@@ -1,0 +1,251 @@
+module router_assertions (
+    input  logic       clk,
+    input  logic       rst_b,
+    input  pkt_flit_t  pkt_in     [1:0],
+    input  pkt_flit_t  pkt_out    [1:0],
+    input  logic [1:0] write,
+    input  logic [1:0] read,
+    input  logic [1:0] fifo_full,
+    input  logic [1:0] fifo_empty,
+    input  pkt_flit_t  fifo_out_pkt[1:0],
+    input  logic [1:0] out_req    [1:0],
+    input  logic [1:0] out_grant  [1:0],
+    input  logic [1:0] mask       [1:0]
+);
+
+
+    // ============================================================
+    // 1. FIFO Read and Write Operations 
+    // ============================================================
+
+    // Assertion 1: Write to FIFO[0] when pkt_in[0].valid = 1
+    property P_Write_to_fifo_0;
+      @(posedge clk) disable iff (!rst_b)
+        (pkt_in[0].valid && !fifo_full[0]) |-> write[0];
+    endproperty
+    P_Write_to_fifo_0_assert: assert property (P_Write_to_fifo_0);
+
+    // Assertion 2: Write to FIFO[1] when pkt_in[1].valid = 1
+    property P_Write_to_fifo_1;
+      @(posedge clk) disable iff (!rst_b)
+        (pkt_in[1].valid && !fifo_full[1]) |-> write[1];
+    endproperty
+    P_Write_to_fifo_1_assert: assert property (P_Write_to_fifo_1);
+
+    // Assertion 3: Read FIFO0 if granted
+    property P_Read_from_fifo_0;
+      @(posedge clk) disable iff (!rst_b)
+        ((out_grant[0][0] || out_grant[1][0]) && !fifo_empty[0]) |-> read[0];
+    endproperty
+    P_Read_from_fifo_0_assert: assert property (P_Read_from_fifo_0);
+
+    // Assertion 4: Read FIFO1 if granted
+    property P_Read_from_fifo_1;
+      @(posedge clk) disable iff (!rst_b)
+        ((out_grant[0][1] || out_grant[1][1]) && !fifo_empty[1]) |-> read[1];
+    endproperty
+    P_Read_from_fifo_1_assert: assert property (P_Read_from_fifo_1);
+
+
+/*
+    // ============================================================
+    // 2. POINTER STABILITY DURING RESET
+    // ============================================================
+
+//Bug Detection
+    property P_Reset_Stable_P0;
+        @(posedge clk)
+          $fell(rst_b) |-> 
+            (simple_router.router_inp_fifo[0].router_fifo.rd_ptr ==
+             $past(simple_router.router_inp_fifo[0].router_fifo.rd_ptr)) &&
+            (simple_router.router_inp_fifo[0].router_fifo.wr_ptr ==
+             $past(simple_router.router_inp_fifo[0].router_fifo.wr_ptr));
+    endproperty
+    P_Reset_Stable_P0_assert: assert property(P_Reset_Stable_P0);
+
+    property P_Reset_Stable_P1;
+        @(posedge clk)
+          $fell(rst_b) |-> 
+            (simple_router.router_inp_fifo[1].router_fifo.rd_ptr ==
+             $past(simple_router.router_inp_fifo[1].router_fifo.rd_ptr)) &&
+            (simple_router.router_inp_fifo[1].router_fifo.wr_ptr ==
+             $past(simple_router.router_inp_fifo[1].router_fifo.wr_ptr));
+    endproperty
+    P_Reset_Stable_P1_assert: assert property(P_Reset_Stable_P1);
+
+*/
+
+    // ============================================================
+    // 3. Output Request Logic
+    // ============================================================
+
+//Bug Detection
+    property P_Route_In0_Out0;
+        @(posedge clk) disable iff (!rst_b)
+            (!fifo_empty[0] &&
+             fifo_out_pkt[0].output_port_num == 1'b0 &&
+             mask[0][0]) |-> out_req[0][0];
+    endproperty
+    P_Route_In0_Out0_assert: assert property (P_Route_In0_Out0);
+
+    property P_Route_In1_Out0;
+        @(posedge clk) disable iff (!rst_b)
+            (!fifo_empty[1] &&
+             fifo_out_pkt[1].output_port_num == 1'b0 &&
+             mask[0][1]) |-> out_req[0][1];
+    endproperty
+    P_Route_In1_Out0_assert: assert property (P_Route_In1_Out0);
+
+    property P_Route_In0_Out1;
+        @(posedge clk) disable iff (!rst_b)
+            (!fifo_empty[0] &&
+             fifo_out_pkt[0].output_port_num == 1'b1 &&
+             mask[1][0]) |-> out_req[1][0];
+    endproperty
+    P_Route_In0_Out1_assert: assert property (P_Route_In0_Out1);
+
+    property P_Route_In1_Out1;
+        @(posedge clk) disable iff (!rst_b)
+            (!fifo_empty[1] &&
+             fifo_out_pkt[1].output_port_num == 1'b1 &&
+             mask[1][1]) |-> out_req[1][1];
+    endproperty
+    P_Route_In1_Out1_assert: assert property (P_Route_In1_Out1);
+
+	property valid_head(port);
+	@(posedge clk) disable iff(!rst_b) 
+	pkt_in[port].head  && pkt_in[port].valid |-> (!pkt_in[port].tail && pkt_in[port].valid);
+	endproperty
+
+	assert_valid_head0: assert property(valid_head(0));
+	assert_valid_head1: assert property(valid_head(1));
+
+
+    // ============================================================
+    // 4. Default Mask Behaviour
+    // ============================================================
+
+    property P_MaskReset_O0;
+        @(posedge clk) disable iff (!rst_b)
+            ((out_grant[0][0] && fifo_out_pkt[0].tail && fifo_out_pkt[0].valid) ||
+             (out_grant[0][1] && fifo_out_pkt[1].tail && fifo_out_pkt[1].valid))
+               |=> (mask[0] == 2'b11);
+    endproperty
+    P_MaskReset_O0_assert: assert property (P_MaskReset_O0);
+
+    property P_MaskReset_O1;
+        @(posedge clk) disable iff (!rst_b)
+            ((out_grant[1][0] && fifo_out_pkt[0].tail && fifo_out_pkt[0].valid) ||
+             (out_grant[1][1] && fifo_out_pkt[1].tail && fifo_out_pkt[1].valid))
+               |=> (mask[1] == 2'b11);
+    endproperty
+    P_MaskReset_O1_assert: assert property (P_MaskReset_O1);
+
+
+
+    // ============================================================
+    // 5. FIFO and OUTPUT checing assertions
+    // ============================================================
+
+    property P_OutMatch0_From0;
+        @(posedge clk) disable iff (!rst_b)
+            (pkt_out[0].valid && out_grant[0][0]) |-> (pkt_out[0] == fifo_out_pkt[0]);
+    endproperty
+    P_OutMatch0_From0_assert: assert property(P_OutMatch0_From0);
+
+    property P_OutMatch0_From1;
+        @(posedge clk) disable iff (!rst_b)
+            (pkt_out[0].valid && out_grant[0][1]) |-> (pkt_out[0] == fifo_out_pkt[1]);
+    endproperty
+    P_OutMatch0_From1_assert: assert property(P_OutMatch0_From1);
+
+    property P_OutMatch1_From0;
+        @(posedge clk) disable iff (!rst_b)
+            (pkt_out[1].valid && out_grant[1][0]) |-> (pkt_out[1] == fifo_out_pkt[0]);
+    endproperty
+    P_OutMatch1_From0_assert: assert property(P_OutMatch1_From0);
+
+    property P_OutMatch1_From1;
+        @(posedge clk) disable iff (!rst_b)
+            (pkt_out[1].valid && out_grant[1][1]) |-> (pkt_out[1] == fifo_out_pkt[1]);
+    endproperty
+    P_OutMatch1_From1_assert: assert property(P_OutMatch1_From1);
+
+
+
+    // ============================================================
+    // 6. ONE-HOT GRANT CHECKS
+    // ============================================================
+
+    property P_OneHot_Grant0;
+        @(posedge clk) disable iff(!rst_b)
+            !(out_grant[0][0] && out_grant[0][1]);
+    endproperty
+    P_OneHot_Grant0_assert: assert property(P_OneHot_Grant0);
+
+    property P_OneHot_Grant1;
+        @(posedge clk) disable iff(!rst_b)
+            !(out_grant[1][0] && out_grant[1][1]);
+    endproperty
+    P_OneHot_Grant1_assert: assert property(P_OneHot_Grant1);
+
+
+//====================================================================================
+
+ // Assertion: If grant to input1 from output0 and flit is not tail,
+  // mask[0] should rotate to 2'b10
+  property in1_ou0;
+    @(posedge clk) disable iff (!rst_b)
+      (out_grant[0][1] && !fifo_out_pkt[1].tail) |=> (mask[0] == 2'b10);
+  endproperty
+
+  // Assertion: If grant to input0 from output0 and flit is not tail,
+  // mask[0] should be 2'b01
+  property in0_ou0;
+    @(posedge clk) disable iff (!rst_b)
+      (out_grant[0][0] && !fifo_out_pkt[0].tail) |=> (mask[0] == 2'b01);
+  endproperty
+
+  // Assertion: If grant to input1 from output1 and flit is not tail,
+  // mask[1] should be 2'b10
+  property in1_ou1;
+    @(posedge clk) disable iff (!rst_b)
+      (out_grant[1][1] && !fifo_out_pkt[1].tail) |=> (mask[1] == 2'b10);
+  endproperty
+
+
+  // Assertion: Read[0] implies some grant for input0
+  property read0_ou1_or_ou0;
+    @(posedge clk) disable iff (!rst_b)
+      read[0] |-> (out_grant[0][0] || out_grant[1][0]);
+  endproperty
+
+  in1_ou0_assert  : assert property (in1_ou0);
+  in0_ou0_assert: assert property (in0_ou0);
+  in1_ou1_assert: assert property (in1_ou1);
+  read0_ou1_or_ou0_assert: assert property (read0_ou1_or_ou0);
+
+
+    // ============================================================
+    // 7. Packet Property Coverage
+    // ============================================================
+// Property for packet on input port 0
+	property packet_property_p0;
+  		@(posedge clk) disable iff (!rst_b)
+    (pkt_in[0].valid && pkt_in[0].head) |=>
+    (pkt_in[0].valid)[*1:2] ##1
+    (pkt_in[0].valid && pkt_in[0].tail);
+	endproperty
+
+// Property for packet on input port 1
+	property packet_property_p1;
+ 		 @(posedge clk) disable iff (!rst_b)
+    (pkt_in[1].valid && pkt_in[1].head) |=>
+    (pkt_in[1].valid)[*1:2] ##1
+    (pkt_in[1].valid && pkt_in[1].tail);
+	endproperty
+
+	cover_pkt_p0: cover property (packet_property_p0);
+	cover_pkt_p1: cover property (packet_property_p1);
+   
+endmodule

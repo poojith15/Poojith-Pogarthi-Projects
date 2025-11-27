@@ -1,0 +1,3 @@
+To get the simulation working, you may have to include design_includes.h in your design files or add its content to it. 
+
+

@@ -1,0 +1,142 @@
+# //  Questa Sim-64
+# //  Version 2024.2 linux_x86_64 May 20 2024
+# //
+# // Unpublished work. Copyright 2024 Siemens
+# //
+# // This material contains trade secrets or otherwise confidential information
+# // owned by Siemens Industry Software Inc. or its affiliates (collectively,
+# // "SISW"), or its licensors. Access to and use of this information is strictly
+# // limited as set forth in the Customer's applicable agreements with SISW.
+# //
+# // This material may not be copied, distributed, or otherwise disclosed outside
+# // of the Customer's facilities without the express written permission of SISW,
+# // and may not be used in any way not expressly authorized by SISW.
+# //
+# vsim do 
+# Start time: 21:55:40 on Nov 26,2025
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Error: (vopt-11) Could not find work.do.
+# Optimization failed
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=1, Warnings=0.
+# Error loading design
+# End time: 21:55:41 on Nov 26,2025, Elapsed time: 0:00:01
+# Errors: 1, Warnings: 0
+do run.do
+# ** Warning: (vlib-34) Library already exists at "work".
+# Errors: 0, Warnings: 1
+# QuestaSim-64 vlog 2024.2 Compiler 2024.05 May 20 2024
+# Start time: 21:55:52 on Nov 26,2025
+# vlog -reportprogress 300 ../RTL/output_port_arbiter.sv 
+# -- Compiling module output_port_arbiter
+# 
+# Top level modules:
+# 	output_port_arbiter
+# End time: 21:55:52 on Nov 26,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# QuestaSim-64 vlog 2024.2 Compiler 2024.05 May 20 2024
+# Start time: 21:55:52 on Nov 26,2025
+# vlog -reportprogress 300 ../RTL/router_fifo.sv 
+# ** Warning: ../RTL/router_fifo.sv(9): (vlog-13314) Defaulting port 'fifo_in_pkt' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# -- Compiling package router_fifo_sv_unit
+# -- Compiling module router_fifo
+# ** Warning: ../RTL/router_fifo.sv(9): (vlog-13314) Defaulting port 'fifo_in_pkt' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# 
+# Top level modules:
+# 	router_fifo
+# End time: 21:55:52 on Nov 26,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 2
+# QuestaSim-64 vlog 2024.2 Compiler 2024.05 May 20 2024
+# Start time: 21:55:52 on Nov 26,2025
+# vlog -reportprogress 300 ../RTL/simple_router.sv 
+# ** Warning: ../RTL/simple_router.sv(6): (vlog-13314) Defaulting port 'pkt_in' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# -- Compiling package simple_router_sv_unit
+# -- Compiling module simple_router
+# ** Warning: ../RTL/simple_router.sv(6): (vlog-13314) Defaulting port 'pkt_in' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# 
+# Top level modules:
+# 	simple_router
+# End time: 21:55:53 on Nov 26,2025, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 2
+# QuestaSim-64 vlog 2024.2 Compiler 2024.05 May 20 2024
+# Start time: 21:55:53 on Nov 26,2025
+# vlog -reportprogress 300 ../RTL/tb_simple_router.sv 
+# -- Compiling package tb_simple_router_sv_unit
+# -- Compiling module tb_simple_router
+# 
+# Top level modules:
+# 	tb_simple_router
+# End time: 21:55:53 on Nov 26,2025, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -voptargs="+acc" work.tb_simple_router 
+# Start time: 21:55:53 on Nov 26,2025
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Warning: (vopt-10587) Some optimizations are turned off because the +acc switch is in effect. This will cause your simulation to run slowly. Please use -access/-debug to maintain needed visibility. The +acc switch would be deprecated in a future release.
+# ** Warning: ../RTL/simple_router.sv(6): (vopt-13314) Defaulting port 'pkt_in' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# ** Warning: ../RTL/router_fifo.sv(9): (vopt-13314) Defaulting port 'fifo_in_pkt' kind to 'var' rather than 'wire' due to default compile option setting of -svinputport=relaxed.
+# ** Note: (vsim-12126) Error and warning message counts have been restored: Errors=0, Warnings=3.
+# Loading sv_std.std
+# Loading work.tb_simple_router_sv_unit(fast)
+# Loading work.tb_simple_router(fast)
+# Loading work.simple_router_sv_unit(fast)
+# Loading work.simple_router(fast)
+# Loading work.router_fifo_sv_unit(fast)
+# Loading work.router_fifo(fast)
+# Loading work.output_port_arbiter(fast)
+# T 		| rst |  IN0: v h t data      op txn	|  IN1: v h t data      op txn  |  OUT0: v h t data      |  OUT1: v h t data
+# T=5000    |      0  |        0 0 0 00000000  0   0 |        0 0 0 00000000  0   0 |         0 0 0 00000000 |        0 0 0 00000000
+# T=15000    |      1  |        0 0 0 00000000  0   0 |        0 0 0 00000000  0   0 |         0 0 0 00000000 |        0 0 0 00000000
+# ==input port 0 to output port 0======================================================================================================================
+# T=25000    |      1  |        1 1 0 00000001  0   0 |        0 0 0 00000000  0   0 |         0 0 0 00000000 |        0 0 0 00000000
+# T=35000    |      1  |        1 0 0 00000002  0   0 |        0 0 0 00000000  0   0 |         1 1 0 00000001 |        0 0 0 00000000
+# T=45000    |      1  |        1 0 0 00000003  0   0 |        0 0 0 00000000  0   0 |         1 0 0 00000002 |        0 0 0 00000000
+# T=55000    |      1  |        1 0 1 00000004  0   0 |        0 0 0 00000000  0   0 |         1 0 0 00000003 |        0 0 0 00000000
+# T=65000    |      1  |        0 0 0 00000000  0   0 |        0 0 0 00000000  0   0 |         1 0 1 00000004 |        0 0 0 00000000
+# ==input port 1 to output port 0======================================================================================================================
+# T=75000    |      1  |        0 0 0 00000000  0   0 |        1 1 0 00000005  0   1 |         0 0 0 00000000 |        0 0 0 00000000
+# T=85000    |      1  |        0 0 0 00000000  0   0 |        1 0 0 00000006  0   1 |         1 1 0 00000005 |        0 0 0 00000000
+# T=95000    |      1  |        0 0 0 00000000  0   0 |        1 0 0 00000007  0   1 |         1 0 0 00000006 |        0 0 0 00000000
+# T=105000    |      1  |        0 0 0 00000000  0   0 |        1 0 1 00000008  0   1 |         1 0 0 00000007 |        0 0 0 00000000
+# T=115000    |      1  |        0 0 0 00000000  0   0 |        0 0 0 00000000  0   1 |         1 0 1 00000008 |        0 0 0 00000000
+# ==input port 0 to output port 1======================================================================================================================
+# T=125000    |      1  |        1 1 0 00000001  1   0 |        0 0 0 00000000  0   1 |         0 0 0 00000000 |        0 0 0 00000000
+# T=135000    |      1  |        1 0 0 00000002  1   0 |        0 0 0 00000000  0   1 |         0 0 0 00000000 |        1 1 0 00000001
+# T=145000    |      1  |        1 0 1 00000004  1   0 |        0 0 0 00000000  0   1 |         0 0 0 00000000 |        1 0 0 00000002
+# T=155000    |      1  |        0 0 0 00000000  1   0 |        0 0 0 00000000  0   1 |         0 0 0 00000000 |        1 0 1 00000004
+# ==input port 1 to output port 1======================================================================================================================
+# T=165000    |      1  |        0 0 0 00000000  1   0 |        1 1 0 00000001  1   1 |         0 0 0 00000000 |        0 0 0 00000000
+# T=175000    |      1  |        0 0 0 00000000  1   0 |        1 0 0 00000002  1   1 |         0 0 0 00000000 |        1 1 0 00000001
+# T=185000    |      1  |        0 0 0 00000000  1   0 |        1 0 1 00000004  1   1 |         0 0 0 00000000 |        1 0 0 00000002
+# T=195000    |      1  |        0 0 0 00000000  1   0 |        0 0 0 00000000  1   1 |         0 0 0 00000000 |        1 0 1 00000004
+# ==input port 1 to output port 1,input port 0 to output port 0=========================================================================================
+# T=205000    |      1  |        1 1 0 00000001  0   0 |        1 1 0 00000001  1   1 |         0 0 0 00000000 |        0 0 0 00000000
+# T=215000    |      1  |        1 0 0 00000001  0   0 |        1 1 0 00000002  1   1 |         1 1 0 00000001 |        1 1 0 00000001
+# T=225000    |      1  |        1 0 0 00000001  0   0 |        1 0 0 00000003  1   1 |         1 0 0 00000001 |        1 1 0 00000002
+# T=235000    |      1  |        1 0 1 00000001  0   0 |        1 0 1 00000004  1   1 |         1 0 0 00000001 |        1 0 0 00000003
+# T=245000    |      1  |        0 0 0 00000000  0   0 |        0 0 0 00000000  1   1 |         1 0 1 00000001 |        1 0 1 00000004
+# ==input port 1 to output port 0,input port 0 to output port 0=======================================================================================
+# T=255000    |      1  |        1 1 0 00000001  0   0 |        1 1 0 00000001  0   1 |         0 0 0 00000000 |        0 0 0 00000000
+# T=265000    |      1  |        1 0 0 00000001  0   0 |        1 1 0 00000002  0   1 |         1 1 0 00000001 |        0 0 0 00000000
+# T=275000    |      1  |        1 0 0 00000001  0   0 |        1 0 0 00000003  0   1 |         1 1 0 00000002 |        0 0 0 00000000
+# T=285000    |      1  |        1 0 1 00000001  0   0 |        1 0 1 00000004  0   1 |         1 0 0 00000003 |        0 0 0 00000000
+# T=295000    |      1  |        0 0 0 00000000  0   0 |        0 0 0 00000000  0   1 |         1 0 1 00000004 |        0 0 0 00000000
+# ==input port 1 to output port 1,input port 0 to output port 1==============================================================================================
+# T=305000    |      1  |        1 1 0 00000001  1   0 |        1 1 0 00000001  1   1 |         1 1 0 00000001 |        0 0 0 00000000
+# T=315000    |      1  |        1 0 0 00000001  1   0 |        1 1 0 00000002  1   1 |         1 0 0 00000001 |        1 1 0 00000001
+# T=325000    |      1  |        1 0 0 00000001  1   0 |        1 0 0 00000003  1   1 |         1 1 0 00000001 |        1 1 0 00000002
+# T=335000    |      1  |        1 0 1 00000001  1   0 |        1 0 1 00000004  1   1 |         1 0 0 00000001 |        1 0 0 00000003
+# T=345000    |      1  |        0 0 0 00000000  1   0 |        1 1 0 00000001  1   1 |         1 1 0 00000001 |        1 0 1 00000004
+# T=355000    |      1  |        0 0 0 00000000  1   0 |        1 0 1 00000004  1   1 |         1 0 0 00000001 |        1 1 0 00000001
+# T=365000    |      1  |        0 0 0 00000000  1   0 |        1 0 0 00000004  1   1 |         0 0 0 00000000 |        1 0 1 00000004
+# T=375000    |      1  |        0 0 0 00000000  1   0 |        1 0 1 00000004  1   1 |         0 0 0 00000000 |        1 0 0 00000004
+# ==============================================================================================================
+# T=385000    |      1  |        0 0 0 00000000  1   0 |        0 0 0 00000000  1   1 |         0 0 0 00000000 |        1 0 1 00000004
+# T=395000    |      1  |        0 0 0 00000000  1   0 |        0 0 0 00000000  1   1 |         0 0 0 00000000 |        0 0 0 00000000
+# T=405000    |      1  |        0 0 0 00000000  1   0 |        0 0 0 00000000  1   1 |         0 0 0 00000000 |        0 0 0 00000000
+# T=415000    |      1  |        0 0 0 00000000  1   0 |        0 0 0 00000000  1   1 |         0 0 0 00000000 |        0 0 0 00000000
+# T=425000    |      1  |        0 0 0 00000000  1   0 |        0 0 0 00000000  1   1 |         0 0 0 00000000 |        0 0 0 00000000
+# ** Note: $finish    : ../RTL/tb_simple_router.sv(342)
+#    Time: 425 ns  Iteration: 1  Instance: /tb_simple_router
+# 1
+# Break in Module tb_simple_router at ../RTL/tb_simple_router.sv line 342
+# End time: 21:56:34 on Nov 26,2025, Elapsed time: 0:00:41
+# Errors: 0, Warnings: 3

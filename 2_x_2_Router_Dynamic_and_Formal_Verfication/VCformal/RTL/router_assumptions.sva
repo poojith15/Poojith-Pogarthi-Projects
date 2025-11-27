@@ -1,0 +1,103 @@
+module router_assumptions (
+    input logic clk,
+    input logic rst_b,
+    input pkt_flit_t pkt_in[1:0],
+    input logic [1:0] fifo_full
+);
+
+
+// ==================== Valid For Flit ====================
+
+// P0: head & tail cannot be 1 in same cycle on port 0
+property p0_head_tail_exclusive;
+    @(posedge clk) disable iff (!rst_b)
+      !(pkt_in[0].head && pkt_in[0].tail); 
+endproperty
+assume_p0_head_tail_exclusive: assume property(p0_head_tail_exclusive);
+
+// P1: head & tail cannot be 1 in same cycle on port 1
+property p1_head_tail_exclusive;
+    @(posedge clk) disable iff (!rst_b)
+      !(pkt_in[1].head && pkt_in[1].tail );
+endproperty
+assume_p1_head_tail_exclusive: assume property(p1_head_tail_exclusive);
+
+// If one input has a valid flit, the other also has a valid flit (both inputs active)
+property both_inputs_valid_seq (int port);
+    @(posedge clk) disable iff (!rst_b)
+      pkt_in[port].valid |-> pkt_in[!port].valid;
+endproperty
+assume_both_inputs_valid_0: assume property(both_inputs_valid_seq(0));
+assume_both_inputs_valid_1: assume property(both_inputs_valid_seq(1));
+
+// At least one input is always valid when not in reset
+property any_input_valid_always;
+    @(posedge clk) disable iff (!rst_b)
+      (pkt_in[0].valid || pkt_in[1].valid);
+endproperty
+assume_any_input_valid_always: assume property(any_input_valid_always);
+
+// Simple body flit pattern: head ? 12 mid flits with valid=1, no tail
+property mid_flits_valid_seq (int port);
+    @(posedge clk) disable iff (!rst_b)
+      (pkt_in[port].head && !pkt_in[port].tail && pkt_in[port].valid)
+        |=> (!pkt_in[port].tail && pkt_in[port].valid && !pkt_in[port].head)[*1:2];
+endproperty
+assume_mid_flits_valid_0: assume property(mid_flits_valid_seq(0));
+assume_mid_flits_valid_1: assume property(mid_flits_valid_seq(1));
+
+// Destination output port stays same on same-port stream
+property same_port_stream_seq (int port);
+    @(posedge clk) disable iff (!rst_b)
+      (pkt_in[port].head && !pkt_in[port].tail && pkt_in[port].valid &&
+       pkt_in[port].output_port_num == port)
+        |-> ##[1:2]
+            (pkt_in[port].valid && pkt_in[port].output_port_num == port)[*2:3];
+endproperty
+assume_same_port_stream_0: assume property(same_port_stream_seq(0));
+assume_same_port_stream_1: assume property(same_port_stream_seq(1));
+
+// Cross-port stream: head targeting !port, followed by more flits targeting !port
+property cross_port_stream_seq (int port);
+    @(posedge clk) disable iff (!rst_b)
+      (pkt_in[port].head && !pkt_in[port].tail && pkt_in[port].valid &&
+       pkt_in[port].output_port_num == !port)
+        |-> ##[1:2]
+            (pkt_in[port].valid && pkt_in[port].output_port_num == !port)[*2:3];
+endproperty
+assume_cross_port_stream_0: assume property(cross_port_stream_seq(0));
+assume_cross_port_stream_1: assume property(cross_port_stream_seq(1));
+
+
+// OUTPUT o to 1
+
+property p0_dest_in_range;
+    @(posedge clk) disable iff (!rst_b)
+      pkt_in[0].valid |-> (pkt_in[0].output_port_num inside {0, 1});
+endproperty
+assume_p0_dest_in_range: assume property(p0_dest_in_range);
+
+property p1_dest_in_range;
+    @(posedge clk) disable iff (!rst_b)
+      pkt_in[1].valid |-> (pkt_in[1].output_port_num inside {0, 1});
+endproperty
+assume_p1_dest_in_range: assume property(p1_dest_in_range);
+
+
+
+
+property p0_packet_has_tail_relaxed;
+    @(posedge clk) disable iff (!rst_b)
+      (pkt_in[0].valid && pkt_in[0].head)
+        |-> ##[2:3] (pkt_in[0].valid && pkt_in[0].tail);
+endproperty
+assume_p0_packet_has_tail_relaxed: assume property(p0_packet_has_tail_relaxed);
+
+property p1_packet_has_tail_relaxed;
+    @(posedge clk) disable iff (!rst_b)
+      (pkt_in[1].valid && pkt_in[1].head)
+        |-> ##[2:3] (pkt_in[1].valid && pkt_in[1].tail);
+endproperty
+assume_p1_packet_has_tail_relaxed: assume property(p1_packet_has_tail_relaxed);
+
+endmodule
